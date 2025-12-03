@@ -170,3 +170,32 @@ document.getElementById('bodySVG').addEventListener('load', ()=>{
 
 // Hook to trigger body svg urine animations from showFunction when excretion is chosen
 // (we do this after bodySVG load above; showFunction will attempt to call beginElement)
+
+// Quiz logic
+const quizAnswers = { q1:'b', q2:'b', q3:'c' };
+const submitBtn = document.getElementById('submitQuiz');
+const resetBtn = document.getElementById('resetQuiz');
+const quizResult = document.getElementById('quizResult');
+
+function gradeQuiz(){
+  let score = 0; let total = 3;
+  Object.keys(quizAnswers).forEach(q =>{
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    if(selected && selected.value === quizAnswers[q]) score++;
+  });
+  const msgs = [
+    'Keep exploring — review the sections and try again!',
+    'Nice effort — you\'re getting the idea!',
+    'Great job — you understand how kidneys work!'
+  ];
+  let idx = score === 3 ? 2 : score === 2 ? 1 : 0;
+  quizResult.textContent = `Score: ${score}/${total}. ${msgs[idx]}`;
+}
+
+function resetQuiz(){
+  document.querySelectorAll('.questions input[type="radio"]').forEach(el => el.checked = false);
+  quizResult.textContent = '';
+}
+
+if(submitBtn) submitBtn.addEventListener('click', gradeQuiz);
+if(resetBtn) resetBtn.addEventListener('click', resetQuiz);

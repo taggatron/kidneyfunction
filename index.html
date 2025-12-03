@@ -48,6 +48,42 @@
         <h2>Choose a function</h2>
         <p class="explain">Click the buttons above to see how the kidney does different jobs. You can also hover over parts of the kidney image.</p>
       </div>
+
+      <section id="quiz" class="quiz">
+        <h2>Quick Quiz</h2>
+        <p class="explain">Answer 3 questions to check your understanding.</p>
+        <ol class="questions">
+          <li>
+            <p>1) What does filtration remove from the blood?</p>
+            <div class="answers">
+              <label><input type="radio" name="q1" value="a"> Only water</label>
+              <label><input type="radio" name="q1" value="b"> Waste like urea and extra water</label>
+              <label><input type="radio" name="q1" value="c"> Only glucose</label>
+            </div>
+          </li>
+          <li>
+            <p>2) Reabsorption returns useful substances to the blood. Which is reabsorbed?</p>
+            <div class="answers">
+              <label><input type="radio" name="q2" value="a"> Urea</label>
+              <label><input type="radio" name="q2" value="b"> Water and glucose</label>
+              <label><input type="radio" name="q2" value="c"> Only salt</label>
+            </div>
+          </li>
+          <li>
+            <p>3) Where does urine go after leaving the kidney?</p>
+            <div class="answers">
+              <label><input type="radio" name="q3" value="a"> Back into the vein</label>
+              <label><input type="radio" name="q3" value="b"> The stomach</label>
+              <label><input type="radio" name="q3" value="c"> Through the ureter to the bladder</label>
+            </div>
+          </li>
+        </ol>
+        <div class="quiz-actions">
+          <button id="submitQuiz">Check Answers</button>
+          <button id="resetQuiz" class="secondary">Reset</button>
+        </div>
+        <div id="quizResult" class="quiz-result" aria-live="polite"></div>
+      </section>
     </section>
   </main>
 
