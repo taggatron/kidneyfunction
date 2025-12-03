@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple body silhouette with kidney markers -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 600" aria-label="Human torso with kidneys">
+  <rect width="100%" height="100%" fill="none"/>
+  <!-- torso -->
+  <g id="torso" fill="#ffe6f0">
+    <ellipse cx="150" cy="120" rx="80" ry="90" fill="#fff0f6"/>
+    <rect x="70" y="120" width="160" height="350" rx="60" fill="#fff0f6"/>
+  </g>
+
+  <!-- kidneys markers -->
+  <g id="kidneyMarkers" transform="translate(0,40)">
+    <ellipse id="leftMarker" cx="105" cy="260" rx="20" ry="30" fill="#ff6b6b" opacity="0.95" />
+    <ellipse id="rightMarker" cx="195" cy="260" rx="20" ry="30" fill="#ff6b6b" opacity="0.95" />
+  </g>
+
+  <!-- label -->
+  <text x="150" y="520" text-anchor="middle" fill="#5b5b6b" font-size="14">Kidneys sit near the middle of your back</text>
+</svg>

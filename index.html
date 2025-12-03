@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kidney Functions — Interactive</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>How the Kidney Works</h1>
+    <p class="subtitle">An interactive guide for Year 9 students</p>
+  </header>
+
+  <main class="container">
+    <section class="left">
+      <div class="svg-wrap">
+        <!-- body SVG shows location of kidneys -->
+        <object id="bodySVG" type="image/svg+xml" data="images/body.svg"></object>
+      </div>
+      <div class="svg-wrap small">
+        <!-- detailed kidney SVG -->
+        <object id="kidneySVG" type="image/svg+xml" data="images/kidney.svg"></object>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="controls">
+        <p>Click a function to learn more and animate the kidney:</p>
+        <div class="buttons">
+          <button data-fn="filtration">Filtration</button>
+          <button data-fn="reabsorption">Reabsorption</button>
+          <button data-fn="excretion">Excretion (Urine)</button>
+          <button data-fn="hormones">Hormone Production</button>
+          <button data-fn="bp">Blood Pressure</button>
+          <button data-fn="ph">pH Balance</button>
+        </div>
+      </div>
+
+      <div id="info" class="info">
+        <h2>Choose a function</h2>
+        <p class="explain">Click the buttons above to see how the kidney does different jobs. You can also hover over parts of the kidney image.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Bright, animated educational demo — suitable for Year 9.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
