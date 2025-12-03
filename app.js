@@ -49,6 +49,27 @@ function showFunction(key){
     }
     if(key === 'reabsorption'){
       const c = svgDoc.getElementById('cortex'); if(c) c.classList.add('pulse');
+      // trigger reabsorption animation: blue/white dots move onto vein line
+      try{
+        const rw1 = svgDoc.getElementById('reAnimWhite1');
+        const rw2 = svgDoc.getElementById('reAnimWhite2');
+        const rb1 = svgDoc.getElementById('reAnimBlue1');
+        const rb2 = svgDoc.getElementById('reAnimBlue2');
+        // artery-direction animations (down into medulla)
+        const rAw1 = svgDoc.getElementById('reAnimWhiteA1');
+        const rAw2 = svgDoc.getElementById('reAnimWhiteA2');
+        const rAb1 = svgDoc.getElementById('reAnimBlueA1');
+        const rAb2 = svgDoc.getElementById('reAnimBlueA2');
+        if(rw1 && rw1.beginElement) rw1.beginElement();
+        if(rb1 && rb1.beginElement) setTimeout(()=>rb1.beginElement(),120);
+        if(rw2 && rw2.beginElement) setTimeout(()=>rw2.beginElement(),240);
+        if(rb2 && rb2.beginElement) setTimeout(()=>rb2.beginElement(),360);
+        // start artery set at same time (mirrored timing)
+        if(rAw1 && rAw1.beginElement) rAw1.beginElement();
+        if(rAb1 && rAb1.beginElement) setTimeout(()=>rAb1.beginElement(),120);
+        if(rAw2 && rAw2.beginElement) setTimeout(()=>rAw2.beginElement(),240);
+        if(rAb2 && rAb2.beginElement) setTimeout(()=>rAb2.beginElement(),360);
+      }catch(e){/* ignore if not supported */}
     }
     if(key === 'excretion'){
       const u = svgDoc.getElementById('ureter'); if(u) u.classList.add('pulse');
