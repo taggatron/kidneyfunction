@@ -22,28 +22,32 @@
 
   <!-- bladder area and urine path that falls down between the legs -->
   <g id="bladder">
-    <!-- vertical path from bottom of torso down between legs -->
-    <path id="bodyUrinePath" d="M150,340 C150,400 150,460 150,540" fill="none" stroke="none" />
+    <!-- triangular bladder (stylised) with apex pointing downward -->
+    <polygon id="triBladder" points="130,330 170,330 150,370" fill="#ffd166" stroke="#ffb703" stroke-width="3" opacity="0.95" />
 
+    <!-- urethra path (from bladder apex down between the legs) -->
+    <path id="bodyUrethraPath" d="M150,370 C150,420 150,480 150,540" fill="none" stroke="none" />
+
+    <!-- animated droplets that travel from bladder down the urethra -->
     <circle id="bUrineDot1" r="6" fill="#06d6a0" opacity="0.95">
       <animateMotion id="bUrineAnim1" dur="1.6s" repeatCount="indefinite" begin="indefinite">
-        <mpath href="#bodyUrinePath" />
+        <mpath href="#bodyUrethraPath" />
       </animateMotion>
     </circle>
 
     <circle id="bUrineDot2" r="5" fill="#06d6a0" opacity="0.9">
       <animateMotion id="bUrineAnim2" dur="1.6s" repeatCount="indefinite" begin="indefinite">
-        <mpath href="#bodyUrinePath" />
+        <mpath href="#bodyUrethraPath" />
       </animateMotion>
     </circle>
   </g>
 
-  <!-- ureters from left and right kidney markers joining at a central point above the bladder -->
+  <!-- ureters from left and right kidney markers connecting into the triangular bladder -->
   <g id="ureters" fill="none" stroke="#ffb703" stroke-width="6" stroke-linecap="round">
-    <!-- left ureter path: from left kidney marker (approx 105,300) to join (150,340) -->
-    <path id="bodyUreterPathL" d="M105,300 C120,310 135,320 150,340" />
-    <!-- right ureter path: from right kidney marker (approx 195,300) to join (150,340) -->
-    <path id="bodyUreterPathR" d="M195,300 C180,310 165,320 150,340" />
+    <!-- left ureter: approach the left top corner of the bladder -->
+    <path id="bodyUreterPathL" d="M105,300 C120,310 132,322 140,330" />
+    <!-- right ureter: approach the right top corner of the bladder -->
+    <path id="bodyUreterPathR" d="M195,300 C180,310 168,322 160,330" />
   </g>
 
   <!-- small animated droplets that travel along each ureter (start indefinite, triggered from JS) -->
