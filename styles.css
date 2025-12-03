@@ -22,6 +22,9 @@ header{
 h1{margin:0; color:var(--purple); letter-spacing:0.3px}
 .subtitle{color:var(--muted); margin-top:8px; font-weight:500}
 
+/* Header stats layout */
+header .stats.card{max-width:900px; margin:14px auto 0}
+
 /* Creative top nav */
 .topnav{
   display:flex; align-items:center; justify-content:space-between;
@@ -132,12 +135,12 @@ footer{padding:20px; text-align:center; color:var(--muted)}
 
 /* Stats section */
 .stats.card{margin-top:16px; padding:20px; display:grid; gap:16px}
-.stats-inner{display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:center}
-.stat-block{background:rgba(255,255,255,0.82); border-radius:14px; padding:18px; box-shadow:0 8px 20px rgba(0,0,0,0.06); text-align:center; border:1px solid var(--border)}
-.stat-value{font-weight:800; font-size:32px; line-height:1.2; color:#1e63c6; letter-spacing:.5px}
+.stats-inner{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; align-items:center}
+.stat-block{background:rgba(255,255,255,0.82); border-radius:12px; padding:14px; box-shadow:0 6px 16px rgba(0,0,0,0.06); text-align:center; border:1px solid var(--border)}
+.stat-value{font-weight:800; font-size:26px; line-height:1.2; color:#1e63c6; letter-spacing:.3px}
 .stat-value.urine{color:#b44a1f}
 .stat-label{margin-top:6px; font-size:14px; color:#3a4a5a}
-.stat-note{grid-column:1 / -1; text-align:center; font-size:13px; color:#536273}
+.stat-note{display:none}
 .visually-hidden{position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
 
 @media (max-width:900px){
