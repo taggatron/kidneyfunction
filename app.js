@@ -199,3 +199,27 @@ function resetQuiz(){
 
 if(submitBtn) submitBtn.addEventListener('click', gradeQuiz);
 if(resetBtn) resetBtn.addEventListener('click', resetQuiz);
+
+// Stats counters: animate to ≈180 L/day and ≈2 L/day
+(function(){
+  const filtrateEl = document.getElementById('filtrateCounter');
+  const urineEl = document.getElementById('urineCounter');
+  function animate(el, target, duration = 1800, suffix = ' L/day'){
+    if(!el) return;
+    const start = 0;
+    const t0 = performance.now();
+    function tick(now){
+      const p = Math.min(1, (now - t0) / duration);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(start + (target - start) * ease);
+      el.textContent = `≈${val}${suffix}`;
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  // start after layout settles
+  setTimeout(() => {
+    animate(filtrateEl, 180);
+    animate(urineEl, 2);
+  }, 300);
+})();
