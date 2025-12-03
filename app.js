@@ -53,7 +53,24 @@ function showFunction(key){
     if(key === 'excretion'){
       const u = svgDoc.getElementById('ureter'); if(u) u.classList.add('pulse');
       const urine = svgDoc.getElementById('urine'); if(urine) urine.classList.add('flowing');
+      // trigger SMIL urine animations inside kidney svg (if present)
+      try{
+        const a1 = svgDoc.getElementById('kUrineAnim1'); if(a1 && a1.beginElement) a1.beginElement();
+        const a2 = svgDoc.getElementById('kUrineAnim2'); if(a2 && a2.beginElement) setTimeout(()=>a2.beginElement(),120);
+        const a3 = svgDoc.getElementById('kUrineAnim3'); if(a3 && a3.beginElement) setTimeout(()=>a3.beginElement(),260);
+      }catch(e){/* ignore if not supported */}
     }
+
+    // also try to trigger body SVG urine animations (if the outer object exposed them)
+    try{
+      const bodyObj = document.getElementById('bodySVG');
+      if(bodyObj){
+        const b1 = bodyObj._bUrineAnim1;
+        const b2 = bodyObj._bUrineAnim2;
+        if(b1 && b1.beginElement) b1.beginElement();
+        if(b2 && b2.beginElement) setTimeout(()=>b2.beginElement(),220);
+      }
+    }catch(e){/* ignore */}
     if(key === 'hormones'){
       const k = svgDoc.getElementById('kidneyWhole'); if(k) k.classList.add('pulse');
     }
@@ -108,4 +125,17 @@ document.getElementById('bodySVG').addEventListener('load', ()=>{
       showFunction('filtration');
     });
   });
+  // make sure body-level urine animations can be started from JS when needed
+  try{
+    const b1 = b.getElementById('bUrineAnim1');
+    const b2 = b.getElementById('bUrineAnim2');
+    // expose them by attaching to the outer object so showFunction can trigger
+    // we'll store references on the DOM node for quick access
+    const obj = document.getElementById('bodySVG');
+    obj._bUrineAnim1 = b1;
+    obj._bUrineAnim2 = b2;
+  }catch(e){/* ignore */}
 });
+
+// Hook to trigger body svg urine animations from showFunction when excretion is chosen
+// (we do this after bodySVG load above; showFunction will attempt to call beginElement)

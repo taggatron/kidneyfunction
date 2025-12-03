@@ -25,13 +25,29 @@
     <path id="vein" class="stream blood-stream" d="M10,90 C60,100 100,130 130,160" stroke="#06d6a0" />
   </g>
 
-  <!-- ureter -->
+  <!-- ureter (path used for urine motion) -->
   <path id="ureter" d="M280,210 C300,220 320,230 330,250" class="ureter" stroke="#ffb703" stroke-width="6" fill="none"/>
 
-  <!-- urine drops that will animate -->
+  <!-- urine motion path (invisible) -->
+  <path id="urinePath" d="M240,180 C252,190 270,200 300,230" fill="none" stroke="none"/>
+
+  <!-- animated urine dots that travel along the path -->
   <g id="urine">
-    <circle cx="318" cy="245" r="6" fill="#06d6a0" class="urine-flow" />
-    <circle cx="328" cy="255" r="5" fill="#06d6a0" class="urine-flow" style="animation-delay:0.3s" />
+    <circle id="kUrineDot1" r="6" fill="#06d6a0" opacity="0.95">
+      <animateMotion id="kUrineAnim1" dur="1.2s" repeatCount="indefinite" begin="indefinite">
+        <mpath href="#urinePath" />
+      </animateMotion>
+    </circle>
+    <circle id="kUrineDot2" r="5" fill="#06d6a0" opacity="0.9">
+      <animateMotion id="kUrineAnim2" dur="1.2s" repeatCount="indefinite" begin="indefinite">
+        <mpath href="#urinePath" />
+      </animateMotion>
+    </circle>
+    <circle id="kUrineDot3" r="4" fill="#06d6a0" opacity="0.85">
+      <animateMotion id="kUrineAnim3" dur="1.2s" repeatCount="indefinite" begin="indefinite">
+        <mpath href="#urinePath" />
+      </animateMotion>
+    </circle>
   </g>
 
   <!-- simple labels for Year 9 -->
