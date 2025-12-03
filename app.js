@@ -67,8 +67,13 @@ function showFunction(key){
       if(bodyObj){
         const b1 = bodyObj._bUrineAnim1;
         const b2 = bodyObj._bUrineAnim2;
-        if(b1 && b1.beginElement) b1.beginElement();
-        if(b2 && b2.beginElement) setTimeout(()=>b2.beginElement(),220);
+        const bUL = bodyObj._bUreterAnimL;
+        const bUR = bodyObj._bUreterAnimR;
+        // trigger ureter flows first (staggered), then bladder flow
+        if(bUL && bUL.beginElement) bUL.beginElement();
+        if(bUR && bUR.beginElement) setTimeout(()=>bUR.beginElement(),100);
+        if(b1 && b1.beginElement) setTimeout(()=>b1.beginElement(),320);
+        if(b2 && b2.beginElement) setTimeout(()=>b2.beginElement(),420);
       }
     }catch(e){/* ignore */}
     if(key === 'hormones'){
@@ -130,10 +135,15 @@ document.getElementById('bodySVG').addEventListener('load', ()=>{
     const b1 = b.getElementById('bUrineAnim1');
     const b2 = b.getElementById('bUrineAnim2');
     // expose them by attaching to the outer object so showFunction can trigger
-    // we'll store references on the DOM node for quick access
+    // store references on the DOM node for quick access
     const obj = document.getElementById('bodySVG');
     obj._bUrineAnim1 = b1;
     obj._bUrineAnim2 = b2;
+    // also expose the ureter animations (left and right)
+    const bUL = b.getElementById('bUreterAnimL');
+    const bUR = b.getElementById('bUreterAnimR');
+    obj._bUreterAnimL = bUL;
+    obj._bUreterAnimR = bUR;
   }catch(e){/* ignore */}
 });
 

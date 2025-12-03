@@ -14,17 +14,48 @@
     <ellipse id="rightMarker" cx="195" cy="260" rx="20" ry="30" fill="#ff6b6b" opacity="0.95" />
   </g>
 
-  <!-- bladder area and urine path for simple animation -->
-  <g id="bladder" transform="translate(0,60)">
-    <path id="bodyUrinePath" d="M120,300 C140,320 160,340 150,380" fill="none" stroke="none" />
-    <circle id="bUrineDot1" r="5" fill="#06d6a0" opacity="0.95">
-        <animateMotion id="bUrineAnim1" dur="1.8s" repeatCount="indefinite" begin="indefinite">
-          <mpath href="#bodyUrinePath" />
-        </animateMotion>
-    </circle>
-    <circle id="bUrineDot2" r="4" fill="#06d6a0" opacity="0.9">
-      <animateMotion id="bUrineAnim2" dur="1.8s" repeatCount="indefinite" begin="indefinite">
+  <!-- legs to create a gap where urine can fall between -->
+  <g id="legs">
+    <rect id="leftLeg" x="90" y="360" width="50" height="200" rx="24" ry="24" fill="#fff0f6" />
+    <rect id="rightLeg" x="160" y="360" width="50" height="200" rx="24" ry="24" fill="#fff0f6" />
+  </g>
+
+  <!-- bladder area and urine path that falls down between the legs -->
+  <g id="bladder">
+    <!-- vertical path from bottom of torso down between legs -->
+    <path id="bodyUrinePath" d="M150,340 C150,400 150,460 150,540" fill="none" stroke="none" />
+
+    <circle id="bUrineDot1" r="6" fill="#06d6a0" opacity="0.95">
+      <animateMotion id="bUrineAnim1" dur="1.6s" repeatCount="indefinite" begin="indefinite">
         <mpath href="#bodyUrinePath" />
+      </animateMotion>
+    </circle>
+
+    <circle id="bUrineDot2" r="5" fill="#06d6a0" opacity="0.9">
+      <animateMotion id="bUrineAnim2" dur="1.6s" repeatCount="indefinite" begin="indefinite">
+        <mpath href="#bodyUrinePath" />
+      </animateMotion>
+    </circle>
+  </g>
+
+  <!-- ureters from left and right kidney markers joining at a central point above the bladder -->
+  <g id="ureters" fill="none" stroke="#ffb703" stroke-width="6" stroke-linecap="round">
+    <!-- left ureter path: from left kidney marker (approx 105,300) to join (150,340) -->
+    <path id="bodyUreterPathL" d="M105,300 C120,310 135,320 150,340" />
+    <!-- right ureter path: from right kidney marker (approx 195,300) to join (150,340) -->
+    <path id="bodyUreterPathR" d="M195,300 C180,310 165,320 150,340" />
+  </g>
+
+  <!-- small animated droplets that travel along each ureter (start indefinite, triggered from JS) -->
+  <g id="ureterDots">
+    <circle id="bUreterDotL" r="5" fill="#06d6a0" opacity="0.95">
+      <animateMotion id="bUreterAnimL" dur="1.2s" repeatCount="indefinite" begin="indefinite">
+        <mpath href="#bodyUreterPathL" />
+      </animateMotion>
+    </circle>
+    <circle id="bUreterDotR" r="5" fill="#06d6a0" opacity="0.95">
+      <animateMotion id="bUreterAnimR" dur="1.2s" repeatCount="indefinite" begin="indefinite">
+        <mpath href="#bodyUreterPathR" />
       </animateMotion>
     </circle>
   </g>
